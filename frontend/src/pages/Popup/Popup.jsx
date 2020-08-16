@@ -5,15 +5,17 @@ import { Header, Message, Table, Icon } from 'semantic-ui-react';
 import './Popup.css';
 
 const Popup = () => {
-  const [count, setCount] = useState(0);
+  const [currentUrl, setCurrentUrl] = useState('');
+  const [currentTitle, setCurrentTitle] = useState('');
+  const [sentiment, setSentiment] = useState('');
+  const [probability, setProbability] = useState('');
 
-  // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
-    document.title = `You clicked ${count} times`;
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
       let url = tabs[0].url;
       let title = tabs[0].title;
+      setCurrentUrl(url);
+      setCurrentTitle(title);
       console.log(url, title);
     });
   });
@@ -22,6 +24,7 @@ const Popup = () => {
     <div style={{ padding: '2em' }}>
       {' '}
       <Header size="huge">Tweetcheckr</Header>
+      <Message>Tweet</Message>
     </div>
   );
 };
