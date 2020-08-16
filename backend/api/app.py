@@ -1,6 +1,8 @@
 from flask import Flask, render_template, url_for, request
 from joblib import load
+from jinja2 import Template
 from transformers import pipeline
+import json
 
 app = Flask(__name__)
 
@@ -12,12 +14,16 @@ def factCheck():
         clf = load('clf.joblib')
         url = request.form['url']
         prediction = clf.predict_proba([url])
-        res = sentimentAnalysis(url)[0]
-        return {
-          "prediction": prediction,
-          "label": res['label'], 
-          "score": res['score']
-         }
+
+        return render_template('popup.html', probability=json.dumps(prediction))
+        
+        #res = sentimentAnalysis(url)[0]
+        #return {
+         # "prediction": prediction,
+         # "label": res['label'], 
+        #  "score": res['score']
+       #  }
+        
 
 
 if __name__ == '__main__':
