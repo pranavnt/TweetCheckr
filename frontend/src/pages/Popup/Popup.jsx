@@ -17,8 +17,12 @@ const Popup = () => {
       let title = tabs[0].title;
       setCurrentUrl(url);
       setCurrentTitle(title);
-      console.log(url, title);
+      
     });
+    fetch('/factCheck').then(res => res.json()).then(data => {
+      setProbability(data)
+    })
+
   });
 
   return (
@@ -41,14 +45,7 @@ const Popup = () => {
               <Icon name="warning" />
               Misinformation, {probability}% confident
             </Table.Cell>
-            <Table.Cell positive>
-              <Icon name="checkmark" />
-              Positive tone, (0.5){' '}
-            </Table.Cell>{' '}
-            <Table.Cell positive>
-              <Icon name="checkmark" />
-              Emontional tone, (0.5){' '}
-            </Table.Cell>
+
           </Table.Row>
         </Table.Body>
       </Table>

@@ -10,13 +10,12 @@ app = Flask(__name__)
 
 @app.route('/factCheck', methods=['POST'])
 def factCheck():
-    if request.method == 'POST':
-        clf = load('clf.joblib')
-        url = request.form['url']
-        prediction = clf.predict_proba([url])
+    clf = load('clf.joblib')
+    url = request.form['url']
+    prediction = clf.predict_proba([url])
 
-        return render_template('templates/popup.html', probability=json.dumps(prediction))
-        
+    return json.dumps(prediction)
+            
         #res = sentimentAnalysis(url)[0]
         #return {
          # "prediction": prediction,
