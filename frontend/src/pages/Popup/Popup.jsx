@@ -7,8 +7,9 @@ import './Popup.css';
 const Popup = () => {
   const [currentUrl, setCurrentUrl] = useState('');
   const [currentTitle, setCurrentTitle] = useState('');
-  const [sentiment, setSentiment] = useState('');
   const [probability, setProbability] = useState('');
+  const [tone, setTone] = useState('');
+  const [emotion, setEmotion] = useState('');
 
   useEffect(() => {
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
@@ -24,7 +25,33 @@ const Popup = () => {
     <div style={{ padding: '2em' }}>
       {' '}
       <Header size="huge">Tweetcheckr</Header>
-      <Message>Tweet</Message>
+      <Table celled stackable>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell collapsing>Tweet</Table.Cell>
+            <Table.Cell id="tweetContents">Tweet Contents</Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+      <Table celled stackable>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell collapsing>Analysis</Table.Cell>
+            <Table.Cell negative>
+              <Icon name="warning" />
+              Misinformation, {probability}% confident
+            </Table.Cell>
+            <Table.Cell positive>
+              <Icon name="checkmark" />
+              Positive tone, (0.5){' '}
+            </Table.Cell>{' '}
+            <Table.Cell positive>
+              <Icon name="checkmark" />
+              Emontional tone, (0.5){' '}
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
     </div>
   );
 };
