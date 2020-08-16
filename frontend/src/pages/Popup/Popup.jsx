@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../assets/img/logo.svg';
 import Greetings from '../../containers/Greetings/Greetings';
+import { Header, Message, Table, Icon } from 'semantic-ui-react';
 import './Popup.css';
 
 const Popup = () => {
@@ -18,11 +19,7 @@ const Popup = () => {
   });
 
   return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
-    </div>
-  );
+    <Header size="huge">Tweetcheckr</Header>
 };
 
 export default Popup;
