@@ -4,13 +4,12 @@ import Greetings from '../../containers/Greetings/Greetings';
 import './Popup.css';
 
 const Popup = () => {
-  useEffect(() => {
-    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-      let url = tabs[0].url;
-      let title = tabs[0].title;
-      console.log(url, title);
-    });
-  }, []);
+  chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+    let url = tabs[0].url;
+    let title = tabs[0].title;
+    console.log(url, title);
+  });
+
   return (
     <div className="App">
       <header className="App-header">
