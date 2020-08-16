@@ -19,7 +19,11 @@ const Popup = () => {
   });
 
   return (
-    <Header size="huge">Tweetcheckr</Header>
+    <div>
+      {' '}
+      <Header size="huge">Tweetcheckr</Header>
+    </div>
+  );
 };
 
 export default Popup;
