@@ -19,7 +19,7 @@ const Popup = () => {
   });
 
   return (
-    <div>
+    <div style={{ padding: '2em' }}>
       {' '}
       <Header size="huge">Tweetcheckr</Header>
     </div>
